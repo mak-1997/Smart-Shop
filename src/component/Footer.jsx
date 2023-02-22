@@ -30,7 +30,7 @@ const Footer = () => {
                 New
               </Tag>
             </Stack>
-            <Link href={"#"}>Tutorials</Link>
+            <Link href={"#"}>Tutorials.</Link>
             <Link href={"#"}>Pricing</Link>
             <Link href={"#"}>Releases</Link>
           </Stack>
