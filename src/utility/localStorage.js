@@ -11,3 +11,8 @@ export const setItemSession = (key, value) =>
 export const getItemSession = (key) => JSON.parse(sessionStorage.getItem(key));
 
 export const removeItemSession = (key) => sessionStorage.removeItem(key);
+
+export const adminData = {
+  email: "admin@gmail.com",
+  password: "12345",
+};

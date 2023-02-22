@@ -47,17 +47,28 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   AddUser,
   GetAllAdmin,
+  GetUsersData,
+  LoginCheck,
   LoginUser,
   LogOUT,
+  LogoutUser,
+  RegisterUser,
 } from "../redux/Auth/auth.action";
-import { getItem, setItem } from "../utility/localStorage";
+import { adminData, getItem, setItem } from "../utility/localStorage";
 
 const Navbar = () => {
+  const initState = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  };
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Registarion, setRegistarion] = useState(false);
   const [admin, setAdmin] = useState(false);
   // const { isOpen, onOpen, onClose } = useDisclosure()
-  const [cred, setCred] = useState({});
+  const [cred, setCred] = useState(initState);
+  const [login, setLogin] = useState({});
   const [conform, setConform] = useState("");
   const navigate = useNavigate();
   const toast = useToast();
@@ -69,67 +80,65 @@ const Navbar = () => {
       [name]: value,
     });
   };
-  const { isLoading, isError, userData, isAuth, userlist, adminlist } =
-    useSelector((store) => store.auth);
-  const dispatch = useDispatch();
 
-  const handleAdminLogin = () => {
-    adminlist.forEach((element) => {
-      if (element.email === cred.email && element.password === cred.password) {
-        setItem("admin", element);
-        toast({
-          title: "successfully sign in ",
-          description: "",
-          status: "success",
-          duration: 6000,
-          isClosable: true,
-        });
-        onClose();
-        navigate("/admin");
-      }
+  const handlechange = (e) => {
+    const { name, value } = e.target;
+    setLogin({
+      ...login,
+      [name]: value,
     });
   };
 
-  useEffect(() => {
-    dispatch(GetAllAdmin());
-  }, []);
-  const handleClick = async () => {
+  const { isLoading, isError, username, isAuth, users, adminlist } =
+    useSelector((store) => store.auth);
+  console.log(isAuth);
+
+  const dispatch = useDispatch();
+
+  const handleAdminLogin = () => {
+    if (
+      cred.email === adminData.email &&
+      cred.password === adminData.password
+    ) {
+      toast({
+        title: "successfully sign in ",
+        description: "",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      onClose();
+      navigate("/admin");
+    } else {
+      toast({
+        title: "Wrong Credentials ",
+        description: "",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+  const handleRegister = () => {
     try {
-      dispatch(AddUser(cred));
-      setTimeout(() => {
-        if (getItem("userData") != null) {
-          toast({
-            title: "successfully sign in ",
-            description: "",
-            status: "success",
-            duration: 6000,
-            isClosable: true,
-          });
-          onClose();
-          navigate("/");
-        } else {
-          toast({
-            title: "invalid username or password ",
-            description: "",
-            status: "error",
-            duration: 6000,
-            isClosable: true,
-            backgroundColor: "red",
-          });
-        }
-      }, 3000);
-    } catch (error) {}
+      dispatch(RegisterUser(cred)).then((res) => dispatch(GetUsersData()));
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleLogin = async () => {
+    let user = users.find(
+      (item) => item.email === login.email && item.password === login.password
+    );
     try {
-      dispatch(LoginUser(cred));
       setTimeout(() => {
-        if (getItem("userData") != null) {
+        if (user) {
+          dispatch(LoginCheck(user.firstname));
           toast({
             title: "successfully sign in ",
             description: "",
             status: "success",
-            duration: 6000,
+            duration: 5000,
             isClosable: true,
           });
           onClose();
@@ -139,27 +148,32 @@ const Navbar = () => {
             title: "wrong username or password ",
             description: "",
             status: "error",
-            duration: 6000,
+            duration: 5000,
             isClosable: true,
             backgroundColor: "red",
           });
         }
-      }, 3000);
+      }, 1000);
     } catch (error) {}
   };
-  let tocken = getItem("userData");
 
   const handleLogout = () => {
-    dispatch(LogOUT());
+    dispatch(LogoutUser());
   };
   let styleNev = {
-    position: "-webkit-sticky",
     position: "fixed",
     top: "0",
     left: "0",
     zIndex: "1",
     width: "100%",
   };
+
+  useEffect(() => {
+    if (users.length === 0) {
+      dispatch(GetUsersData());
+    }
+  }, []);
+
   return (
     <>
       <Box backgroundColor="#2E3192" style={styleNev}>
@@ -222,9 +236,15 @@ const Navbar = () => {
                       color="#dbdbdb"
                       cursor="pointer"
                     />
-                    <Text cursor="pointer" fontSize="12px" color="white">
-                      Sign In
-                    </Text>
+                    {username ? (
+                      <Text cursor="pointer" fontSize="12px" color="white">
+                        {username}
+                      </Text>
+                    ) : (
+                      <Text cursor="pointer" fontSize="12px" color="white">
+                        Sign In
+                      </Text>
+                    )}
                   </Box>
                 </PopoverTrigger>
                 <PopoverContent
@@ -236,7 +256,7 @@ const Navbar = () => {
                   <PopoverCloseButton />
                   <PopoverHeader>
                     <Box align="center">
-                      {tocken === null ? (
+                      {isAuth === false ? (
                         <Button
                           onClick={onOpen}
                           fontSize={{ base: "12px", md: "14px" }}
@@ -277,13 +297,13 @@ const Navbar = () => {
                                   <Input
                                     placeholder="User name..."
                                     name="email"
-                                    onChange={handlechenge}
+                                    onChange={handlechange}
                                   ></Input>
                                   <Input
                                     placeholder="Password..."
                                     type={"password"}
                                     name="password"
-                                    onChange={handlechenge}
+                                    onChange={handlechange}
                                   ></Input>
                                   <Button
                                     onClick={handleLogin}
@@ -292,7 +312,8 @@ const Navbar = () => {
                                     colorScheme="#fff"
                                     mr={3}
                                   >
-                                    {isLoading ? <Spinner /> : "Login"}{" "}
+                                    {/* {isLoading ? <Spinner /> : "Login"}{" "} */}
+                                    Login
                                   </Button>
                                   <Link onClick={() => setRegistarion(true)}>
                                     Don't have an account?{" "}
@@ -312,8 +333,8 @@ const Navbar = () => {
                                     onChange={handlechenge}
                                   ></Input>
                                   <Input
-                                    placeholder="Lastst name..."
-                                    name="laststname"
+                                    placeholder="Last name..."
+                                    name="lastname"
                                     onChange={handlechenge}
                                   ></Input>
                                   <Input
@@ -340,7 +361,7 @@ const Navbar = () => {
                                       : ""}
                                   </p>
                                   <Button
-                                    onClick={handleClick}
+                                    onClick={handleRegister}
                                     fontFamily="arial"
                                     background="-webkit-gradient(linear,left top,left bottom,from(#058b80),to(#02625a))"
                                     colorScheme="#fff"
