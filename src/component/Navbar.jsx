@@ -24,7 +24,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalOverlay,
   Spinner,
   useToast,
@@ -45,16 +44,12 @@ import Logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  AddUser,
-  GetAllAdmin,
   GetUsersData,
   LoginCheck,
-  LoginUser,
-  LogOUT,
   LogoutUser,
   RegisterUser,
 } from "../redux/Auth/auth.action";
-import { adminData, getItem, setItem } from "../utility/localStorage";
+import { adminData } from "../utility/localStorage";
 
 const Navbar = () => {
   const initState = {
@@ -89,9 +84,9 @@ const Navbar = () => {
     });
   };
 
-  const { isLoading, isError, username, isAuth, users, adminlist } =
-    useSelector((store) => store.auth);
-  console.log(isAuth);
+  const { isLoading, username, isAuth, users } = useSelector(
+    (store) => store.auth
+  );
 
   const dispatch = useDispatch();
 

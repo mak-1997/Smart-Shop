@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export const Authreducer = (state = initialState, { type, payload }) => {
-  console.log(payload);
+
   switch (type) {
     case LOADING:
       return {
