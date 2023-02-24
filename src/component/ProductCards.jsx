@@ -8,17 +8,21 @@ import {
   chakra,
   Tooltip,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/Cart/cart.action";
-import { updateAddProductsData,updateRemoveProductsData } from "../redux/Products/products.action";
+import {
+  updateAddProductsData,
+  updateRemoveProductsData,
+} from "../redux/Products/products.action";
 
 function ProductCards(data) {
-  const { poster, price, title, isAdded } = data;
+  const { poster, price, title, isAdded, id } = data;
   const dispatch = useDispatch();
 
-  const handleCart = (event,data) => {
+  const handleCart = (event, data) => {
     event.preventDefault();
     if (isAdded) {
       dispatch(updateRemoveProductsData(data));
@@ -39,9 +43,11 @@ function ProductCards(data) {
         shadow="lg"
         position="relative"
       >
-        <Flex justifyContent={"center"}>
-          <Image src={poster} alt={`Picture of ${title}`} roundedTop="lg" />
-        </Flex>
+        <RouterLink to={`/mensclothing/${id}`}>
+          <Flex justifyContent={"center"}>
+            <Image src={poster} alt={`Picture of ${title}`} roundedTop="lg" />
+          </Flex>
+        </RouterLink>
 
         <Box p="6">
           <Flex mt="1" justifyContent="space-between" alignContent="center">
@@ -74,7 +80,7 @@ function ProductCards(data) {
               <chakra.a
                 href={"#"}
                 display={"flex"}
-                onClick={(event) => handleCart(event,data)}
+                onClick={(event) => handleCart(event, data)}
               >
                 {isAdded ? (
                   <Icon

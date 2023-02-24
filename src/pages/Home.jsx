@@ -6,9 +6,13 @@ import {
   Heading,
   Image,
   Input,
+  List,
+  ListIcon,
+  ListItem,
   Select,
   SimpleGrid,
   Text,
+  useBoolean,
 } from "@chakra-ui/react";
 import MegaMenu from "../component/MegaMenu";
 import { BsCheckLg } from "react-icons/bs";
@@ -45,6 +49,11 @@ import app2 from "../assets/homepage-assets/app2.PNG";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import useThrottle from "../hooks/useThrottle";
+import { getData } from "../redux/Products/products.action";
+import { MdCheckCircle } from "react-icons/md";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 const Home = () => {
   let [Carousel, setCarousel] = useState(false);
@@ -345,7 +354,29 @@ const Home = () => {
   ];
 
   const [query, setQuery] = useState("");
-  // console.log('query:', query)
+  const [suggestion, setSuggestion] = useState([]);
+  const products = useSelector((store) => store.products.data);
+  const dispatch = useDispatch();
+  const [showDropdown, setShowDropdown] = useBoolean();
+
+  useEffect(() => {
+    let newSuggestions = products.filter((item) => {
+      return item.title
+        .split(" ")
+        .join("")
+        .trim()
+        .toLowerCase()
+        .indexOf(query) !== -1
+        ? true
+        : false;
+    });
+    setSuggestion(newSuggestions);
+  }, [query]);
+
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -392,16 +423,51 @@ const Home = () => {
                   </option>
                 ))}
               </Select>
-              <Input
-                onChange={(e) => setQuery(e.target.value)}
-                paddingLeft="10px"
-                fontSize={{ base: "12px", sm: "13px", md: "15px" }}
-                variant="unstyled"
-                placeholder=" Enter product/service name"
-                bg="white"
-                height={{ base: "20px", sm: "30px", md: "50px" }}
-                borderRadius="0px"
-              />
+              <Box w="100%" position="relative">
+                <Input
+                  onChange={(e) => setQuery(e.target.value)}
+                  paddingLeft="10px"
+                  fontSize={{ base: "12px", sm: "13px", md: "15px" }}
+                  variant="unstyled"
+                  placeholder=" Enter product/service name"
+                  bg="white"
+                  height={{ base: "20px", sm: "30px", md: "50px" }}
+                  borderRadius="0px"
+                  value={query}
+                />
+                {suggestion.length > 0 && (
+                  <Box
+                    border="1px solid gray"
+                    borderRadius="5px"
+                    position="absolute"
+                    top="50px"
+                    zIndex="999"
+                    bgColor="white"
+                    overflow="scroll"
+                    w="100%"
+                    maxH="400px"
+                  >
+                    <List spacing={6}>
+                      {suggestion.map((item) => {
+                        return (
+                          <Link to={`/mensclothing/${item.id}`}>
+                            <ListItem
+                              color="black"
+                              fontSize="lg"
+                              cursor="pointer"
+                              textAlign={"left"}
+                              pl="10px"
+                            >
+                              <ListIcon as={BiSearchAlt2} />
+                              {item.title}
+                            </ListItem>
+                          </Link>
+                        );
+                      })}
+                    </List>
+                  </Box>
+                )}
+              </Box>
               <Link to={`/searchProduct/${query}`}>
                 <Button
                   fontSize={{ base: "12px", sm: "13px", md: "15px" }}

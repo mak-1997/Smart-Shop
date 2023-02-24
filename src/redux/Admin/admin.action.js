@@ -2,6 +2,7 @@ import {
   ADD_ADMIN_PRODUCT_ERROR,
   ADD_ADMIN_PRODUCT_LOADING,
   ADD_PRODUCT_ADMIN_SUCCESS,
+  ADMIN_AUTH,
   ADMIN_ERROR,
   ADMIN_ERROR_GETPRODUCTS,
   ADMIN_ERROR_USERS,
@@ -83,3 +84,13 @@ export const UpdateProductInAdmin = (id, data) => async (dispatch) => {
     dispatch({ type: ADMIN_ERROR });
   }
 };
+
+export const AdminLogin = () => (dispatch) => {
+  dispatch({ type: ADMIN_LOADING });
+
+  try {
+    dispatch({ type: ADMIN_AUTH, payload: true });
+  } catch (error) {
+    dispatch({ type: ADMIN_ERROR });
+  }
+}; 

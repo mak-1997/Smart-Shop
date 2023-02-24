@@ -61,7 +61,7 @@ export default function AdminNav() {
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg="#2E3192" px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -72,7 +72,7 @@ export default function AdminNav() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <RouterLink to="/">
-              <Box>Logo</Box>
+              <Box color={"white"}>Logo</Box>
             </RouterLink>
             <HStack
               as={"nav"}
@@ -81,12 +81,13 @@ export default function AdminNav() {
             >
               <RouterLink to="/admin/users">
                 <Box
+                  color={"white"}
                   px={2}
                   py={1}
                   rounded={"md"}
                   _hover={{
                     textDecoration: "none",
-                    bg: useColorModeValue("gray.200", "gray.700"),
+                    bg: "teal",
                   }}
                 >
                   Users
@@ -94,12 +95,13 @@ export default function AdminNav() {
               </RouterLink>
               <RouterLink to="/admin/products">
                 <Box
+                  color={"white"}
                   px={2}
                   py={1}
                   rounded={"md"}
                   _hover={{
                     textDecoration: "none",
-                    bg: useColorModeValue("gray.200", "gray.700"),
+                    bg: "teal",
                   }}
                 >
                   Products
@@ -108,13 +110,14 @@ export default function AdminNav() {
 
               <Box
                 px={2}
+                color={"white"}
                 py={1}
                 onClick={onOpen}
                 cursor="pointer"
                 rounded={"md"}
                 _hover={{
                   textDecoration: "none",
-                  bg: useColorModeValue("gray.200", "gray.700"),
+                  bg: "teal",
                 }}
               >
                 Add Product

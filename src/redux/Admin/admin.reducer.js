@@ -5,6 +5,7 @@ const initialState = {
   isError: false,
   products: [],
   users: [],
+  isAuth: false,
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -71,6 +72,12 @@ export const reducer = (state = initialState, { type, payload }) => {
         products: state.products.map((item) =>
           item.id === payload.id ? payload : item
         ),
+      };
+
+    case types.ADMIN_AUTH:
+      return {
+        ...state,
+        isAuth: payload,
       };
 
     default:
