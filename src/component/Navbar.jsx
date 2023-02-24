@@ -49,7 +49,7 @@ import {
   LogoutUser,
   RegisterUser,
 } from "../redux/Auth/auth.action";
-import { adminData } from "../utility/localStorage";
+import { getItemSession } from "../utility/localStorage";
 
 const Navbar = () => {
   const initState = {
@@ -90,30 +90,6 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  const handleAdminLogin = () => {
-    if (
-      cred.email === adminData.email &&
-      cred.password === adminData.password
-    ) {
-      toast({
-        title: "successfully sign in ",
-        description: "",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      onClose();
-      navigate("/admin");
-    } else {
-      toast({
-        title: "Wrong Credentials ",
-        description: "",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
   const handleRegister = () => {
     try {
       dispatch(RegisterUser(cred)).then((res) => dispatch(GetUsersData()));
@@ -251,7 +227,7 @@ const Navbar = () => {
                   <PopoverCloseButton />
                   <PopoverHeader>
                     <Box align="center">
-                      {isAuth === false ? (
+                      {isAuth === false && !getItemSession("LoginUser") ? (
                         <Button
                           onClick={onOpen}
                           fontSize={{ base: "12px", md: "14px" }}
@@ -510,7 +486,8 @@ const Navbar = () => {
                       <Button
                         onClick={() => {
                           setAdmin(!admin);
-                          onOpen();
+                          // onOpen();
+                          navigate("/admin");
                         }}
                         m="5px 0px"
                         fontSize={{ base: "12px", md: "14px" }}
@@ -521,43 +498,6 @@ const Navbar = () => {
                       >
                         Admin Login
                       </Button>
-                      {admin && (
-                        <Modal
-                          closeOnOverlayClick={false}
-                          isOpen={isOpen}
-                          onClose={onClose}
-                        >
-                          <ModalOverlay />
-                          <ModalContent>
-                            <ModalCloseButton />
-                            <ModalBody textAlign={"center"} pb={6}>
-                              <Flex mt={20} flexDirection={"column"} gap={2}>
-                                <Heading color={"#333"}>Login</Heading>
-                                <Input
-                                  placeholder="User name..."
-                                  name="email"
-                                  onChange={handlechenge}
-                                ></Input>
-                                <Input
-                                  placeholder="Password..."
-                                  type={"password"}
-                                  name="password"
-                                  onChange={handlechenge}
-                                ></Input>
-                                <Button
-                                  onClick={handleAdminLogin}
-                                  fontFamily="arial"
-                                  background="-webkit-gradient(linear,left top,left bottom,from(#058b80),to(#02625a))"
-                                  colorScheme="#fff"
-                                  mr={3}
-                                >
-                                  {isLoading ? <Spinner /> : "Login"}
-                                </Button>
-                              </Flex>
-                            </ModalBody>
-                          </ModalContent>
-                        </Modal>
-                      )}
                     </Box>
                   </PopoverFooter>
                 </PopoverContent>

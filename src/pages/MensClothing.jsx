@@ -7,6 +7,7 @@ import ProductCards from "../component/ProductCards";
 
 
 
+
 const MensClothing = () => {
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products.data);

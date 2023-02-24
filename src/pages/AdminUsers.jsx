@@ -15,9 +15,12 @@ import {
   Image,
   useToast,
   Button,
+  Heading,
 } from "@chakra-ui/react";
+import { MdDeleteForever } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
 
-function Users() {
+function AdminUsers() {
   const { isLoading, isError, users } = useSelector((store) => store.admin);
 
   const dispatch = useDispatch();
@@ -44,6 +47,9 @@ function Users() {
   return (
     <div>
       <AdminNav />
+      <Heading mt={8} mb={8} textAlign={"center"}>
+        Users
+      </Heading>
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
           <TableCaption>Imperial to metric conversion factors</TableCaption>
@@ -69,23 +75,16 @@ function Users() {
                     colorScheme="red"
                     onClick={() => handleDelete(item.id)}
                   >
-                    Delete
+                    <MdDeleteForever />
                   </Button>
                 </Td>
               </Tr>
             ))}
           </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
-            </Tr>
-          </Tfoot>
         </Table>
       </TableContainer>
     </div>
   );
 }
 
-export default Users;
+export default AdminUsers;

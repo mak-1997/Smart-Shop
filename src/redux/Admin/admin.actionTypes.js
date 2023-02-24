@@ -20,3 +20,6 @@ export const ADD_ADMIN_PRODUCT_LOADING = "admin/add/loading";
 export const ADD_ADMIN_PRODUCT_ERROR = "admin/add/error";
 export const ADD_PRODUCT_ADMIN_SUCCESS = "admin/add/product";
 export const ADMIN_UPDATE_PRODUCT_SUCCESS = "admin/update/product";
+
+// Admin-Auth;
+export const ADMIN_AUTH = "admin/auth";

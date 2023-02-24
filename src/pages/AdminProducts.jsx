@@ -24,7 +24,10 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Heading,
 } from "@chakra-ui/react";
+import { MdDeleteForever } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import {
   DeleteAdminProducts,
@@ -32,7 +35,7 @@ import {
   UpdateProductInAdmin,
 } from "../redux/Admin/admin.action";
 
-function Products() {
+function AdminProducts() {
   const initialState = {
     title: "",
     poster: "",
@@ -43,6 +46,7 @@ function Products() {
   };
   const { isLoading, isError, products } = useSelector((store) => store.admin);
   const dispatch = useDispatch();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
   const finalRef = useRef(null);
@@ -53,6 +57,7 @@ function Products() {
 
   const handleDelete = (id) => {
     dispatch(DeleteAdminProducts(id));
+
     setTimeout(() => {
       toast({
         title: `Product ${id} Deleted`,
@@ -90,6 +95,10 @@ function Products() {
   return (
     <div>
       <AdminNav />
+      <Heading mt={8} mb={8} textAlign={"center"}>
+        All Products
+      </Heading>
+
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
           <TableCaption>Imperial to metric conversion factors</TableCaption>
@@ -121,7 +130,7 @@ function Products() {
                     colorScheme="green"
                     onClick={() => handleClick(item.id, onOpen)}
                   >
-                    Update
+                    <BiEdit />
                   </Button>
                 </Td>
                 <Td>
@@ -129,7 +138,7 @@ function Products() {
                     colorScheme="red"
                     onClick={() => handleDelete(item.id)}
                   >
-                    Delete
+                    <MdDeleteForever />
                   </Button>
                 </Td>
               </Tr>
@@ -137,9 +146,7 @@ function Products() {
           </Tbody>
           <Tfoot>
             <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
+              <Th>Total Products :- {products.length}</Th>
             </Tr>
           </Tfoot>
         </Table>
@@ -230,4 +237,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default AdminProducts;
