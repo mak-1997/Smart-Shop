@@ -379,7 +379,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <Box backgroundColor="#F3F3F3" align="center" marginTop="50px">
         {/* --------------------------------Banner & Search---------------------------------- */}
         <Box

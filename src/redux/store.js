@@ -26,3 +26,4 @@ export const store = legacy_createStore(
   composer(applyMiddleware(thunk))
 );
 
+

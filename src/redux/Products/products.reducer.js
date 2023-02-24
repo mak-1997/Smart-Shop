@@ -35,6 +35,21 @@ export const reducer = (state = initialState, action) => {
                 ...state, isLoading: false, isError: true,
             }
         }
+        case types.SET_CATEGORY: {
+            return {
+                ...state, data: [...payload],
+            }
+        }
+        case types.SET_MAX_PRICE: {
+            return {
+                ...state, data: [...payload],
+            }
+        }
+        case types.SET_SORTING:{
+            return{
+                ...state, data:[...payload],
+            }
+        }
         default: {
             return state;
         }
