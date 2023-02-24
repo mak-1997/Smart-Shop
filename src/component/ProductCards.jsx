@@ -7,6 +7,7 @@ import {
   Icon,
   chakra,
   Tooltip,
+  transition,
 } from "@chakra-ui/react";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsFillCartCheckFill } from "react-icons/bs";
@@ -30,8 +31,9 @@ function ProductCards(data) {
   };
 
   return (
-    <Flex maxW="fit-content" alignItems="center" justifyContent="center">
+    <Flex maxW="fit-content" alignItems="center" justifyContent="center"  >
       <Box
+      _hover={{transform:"scale(1.05)"}}
         bg={useColorModeValue("white", "gray.800")}
         maxW="sm"
         borderWidth="1px"
