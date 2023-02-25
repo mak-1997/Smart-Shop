@@ -9,10 +9,12 @@ import {
   List,
   ListIcon,
   ListItem,
+  ScaleFade,
   Select,
   SimpleGrid,
   Text,
   useBoolean,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import MegaMenu from "../component/MegaMenu";
 import { BsCheckLg } from "react-icons/bs";
@@ -434,7 +436,7 @@ const Home = () => {
                   borderRadius="0px"
                   value={query}
                 />
-                {suggestion.length > 0 && (
+                {query && (
                   <Box
                     border="1px solid gray"
                     borderRadius="5px"
@@ -456,6 +458,11 @@ const Home = () => {
                               cursor="pointer"
                               textAlign={"left"}
                               pl="10px"
+                              pb={2}
+                              _hover={{
+                                textDecoration: "none",
+                                bg: "#D3D3D3",
+                              }}
                             >
                               <ListIcon as={BiSearchAlt2} />
                               {item.title}

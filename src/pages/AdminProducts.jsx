@@ -34,6 +34,7 @@ import {
   getAdminProducts,
   UpdateProductInAdmin,
 } from "../redux/Admin/admin.action";
+import Loading from "./Loading";
 
 function AdminProducts() {
   const initialState = {
@@ -91,6 +92,8 @@ function AdminProducts() {
       dispatch(getAdminProducts());
     }
   }, []);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div>

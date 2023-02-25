@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -20,16 +21,22 @@ import {
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { GetSingleProduct } from "../redux/SingleProduct/single.action";
+import Loading from "./Loading";
+import Footer from "../component/Footer";
 
 function SingleProduct() {
   const { productId } = useParams();
-  const { singleProduct } = useSelector((store) => store.singleProduct);
+  const { singleProduct, isLoading } = useSelector(
+    (store) => store.singleProduct
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(GetSingleProduct(Number(productId)));
   }, [productId]);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div>
@@ -183,6 +190,7 @@ function SingleProduct() {
           </Stack>
         </SimpleGrid>
       </Container>
+      <Footer />
     </div>
   );
 }

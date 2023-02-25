@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { MdDeleteForever } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
+import Loading from "./Loading";
 
 function AdminUsers() {
   const { isLoading, isError, users } = useSelector((store) => store.admin);
@@ -44,6 +45,7 @@ function AdminUsers() {
       dispatch(getAdminUsers());
     }
   }, []);
+  if (isLoading) return <Loading />;
   return (
     <div>
       <AdminNav />

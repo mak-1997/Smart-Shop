@@ -40,12 +40,13 @@ export const reducer = (state = initialState, { type, payload }) => {
     case types.GET_ADMIN_PRODUCT_SUCCESS:
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
         products: payload,
       };
     case types.GET_ADMIN_USERS:
       return {
         ...state,
+        isLoading:false,
         users: payload,
       };
 
