@@ -38,7 +38,7 @@ const Footer = () => {
             <Text fontWeight={"500"} fontSize={"lg"} mb={1}>
               Company
             </Text>
-            <Link href={"#"}>About Us</Link>
+            <Link href={"#"}>About Us.</Link>
             <Link href={"#"}>Press</Link>
             <Link href={"#"}>Careers</Link>
             <Link href={"#"}>Contact Us</Link>
