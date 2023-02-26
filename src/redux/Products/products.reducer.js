@@ -4,6 +4,10 @@ const initialState = {
     isLoading: false,
     isError: false,
     data: [],
+    cat: "",
+    price: Infinity,
+    order:"",
+    page: 1,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -11,6 +15,32 @@ export const reducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+
+        case types.SET_CAT : {
+            return{
+                ...state, cat: payload,
+            }
+        }
+        case types.SET_PRICE : {
+            return{
+                ...state, price: payload,
+            }
+        }
+        case types.SET_ORDER : {
+            return{
+                ...state, order: payload,
+            }
+        }
+        case types.SET_PAGE : {
+            return{
+                ...state, page: payload,
+            }
+        }
+        case types.GET_FILTERED_AND_PAGINATED_DATA: {
+            return {
+                ...state, isLoading: false, isError: false, data: [...payload],
+            }
+        }
 
         case types.PRODUCTS_LOADING: {
             return {
