@@ -14,6 +14,7 @@ import { Box, Heading, Spacer, Text, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../component/Navbar";
 import "../styles/Payment.css";
 
 const initDetails = {
@@ -50,7 +51,9 @@ const Payment = () => {
   const cartTotal = useSelector((store) => store.cart.cartTotal);
 
   return (
-    <div>
+    <>
+    <Navbar />
+      <div>
       <Heading mt={20} textAlign="center">
         Enter you Credit Card details
       </Heading>
@@ -258,6 +261,7 @@ const Payment = () => {
         </Modal>
       </Box>
     </div>
+    </>
   );
 };
 
