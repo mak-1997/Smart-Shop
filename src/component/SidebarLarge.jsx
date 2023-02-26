@@ -37,12 +37,12 @@ const SidebarLarge = () => {
   };
 
   const handleCategoryChange = (event) => {
-    setCat(event.target.value);
+    dispatch(setCat(event.target.value));
     dispatch(setCategory(event.target.value, price, order,page));
   };
 
   const handlePriceChange = (event) => {
-    setPrice(event.target.value);
+    dispatch(setPrice(event.target.value));
     dispatch(setMaxPrice(cat, event.target.value, order,page));
   };
 
@@ -78,8 +78,8 @@ const SidebarLarge = () => {
           <option value="desc">Descending Price</option>
         </Select>
         <Select size="sm" maxWidth={'fit-content'} varient="sm" placeholder="Category" onChange={handleCategoryChange}>
-          <option value="mensJacket">Jacket</option>
           <option value="mensTshirt">T-shirt</option>
+          <option value="mensJacket">Jacket</option>
           <option value="mensTrouser">Trousers</option>
         </Select>
         <Select size="sm" maxWidth={'fit-content'} varient="sm" placeholder="Price Range" onChange={handlePriceChange}>
@@ -100,8 +100,8 @@ const SidebarLarge = () => {
               <option value="desc">Descending Price</option>
             </Select>
             <Select placeholder="Category" onChange={handleCategoryChange}>
-              <option value="mensJacket">Jacket</option>
               <option value="mensTshirt">T-shirt</option>
+              <option value="mensJacket">Jacket</option>
               <option value="mensTrouser">Trousers</option>
             </Select>
             <Select placeholder="Price Range" onChange={handlePriceChange}>

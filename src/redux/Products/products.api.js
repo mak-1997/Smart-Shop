@@ -25,7 +25,7 @@ export const getFilteredData = async (category, maxPrice, order,page) => {
     if (category) {
       url += `category=${category}&`;
     }
-    if (maxPrice) {
+    if (maxPrice !== Infinity) {
       url += `price_lte=${maxPrice}&`;
     }
     if (order) {
