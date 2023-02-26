@@ -1,5 +1,6 @@
+import { updateAddProductAPI, updateRemoveProductAPI } from '../Products/products.api';
 import * as types from './cart.actionTypes';
-import { addToCartAPI, removeFromCartAPI } from './cart.api';
+import { addToCartAPI, changeQuantityAPI, deleteFromCartAPI, getCartItemsAPI } from './cart.api';
 
 
 export const addToCart = (payload) => async (dispatch) => {
@@ -13,12 +14,35 @@ export const addToCart = (payload) => async (dispatch) => {
 };
 
 
-export const removeFromCart = (id) => async (dispatch) => {
+export const deleteFromCart = (data) => async (dispatch) => {
     dispatch({ type: types.CART_LOADING });
     try {
-        let data = await removeFromCartAPI(id);
-        dispatch({ type: types.REMOVE_FROM_CART, payload: data });
+        dispatch({ type: types.DELETE_FROM_CART, payload: data.id });
+        await deleteFromCartAPI(data.id);
+        await updateRemoveProductAPI(data);
     } catch (error) {
         dispatch({ type: types.CART_ERROR });
     }
 };
+
+export const getCartItems = () => async (dispatch) => {
+    dispatch({ type: types.CART_LOADING });
+    try {
+        let data = await getCartItemsAPI();
+        dispatch({ type: types.GET_CART_ITEMS, payload: data })
+    } catch (error) {
+        dispatch({ type: types.CART_ERROR });
+    }
+}
+
+export const handleQuantityChange = (data,change) => async(dispatch) =>{
+    
+    dispatch({ type: types.CART_ITEM_QUANTITY_UPDATE, payload: {data, change }})
+    try {
+        await changeQuantityAPI(data,change);
+        await updateAddProductAPI(data,change);
+    } catch (error) {
+        dispatch({ type: types.CART_ERROR });
+    }
+}
+

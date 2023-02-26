@@ -7,6 +7,7 @@ import MensClothing from "../pages/MensClothing";
 import AdminProducts from "../pages/AdminProducts";
 import AdminUsers from "../pages/AdminUsers";
 import SingleProduct from "../pages/SingleProduct";
+import Cart from '../pages/Cart';
 
 const Allroutes = () => {
   return (
@@ -31,6 +32,7 @@ const Allroutes = () => {
         }
       />
       <Route path="/mensclothing/:productId" element={<SingleProduct />} />
+      <Route path= "/cart" element={<Cart />} />
     </Routes>
   );
 };
