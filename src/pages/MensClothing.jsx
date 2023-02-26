@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getData, getFilteredAndPaginatedData } from "../redux/Products/products.action";
 import ProductCards from "../component/ProductCards";
 import SidebarLarge from "../component/SidebarLarge";
+import Loading from "./Loading";
+import Footer from "../component/Footer";
 import { setPage } from "../redux/Products/products.action";
 
 const MensClothing = () => {
@@ -25,6 +27,8 @@ const MensClothing = () => {
   }, [cat,price,order,page]);
 
 
+
+  if (products.isLoading) return <Loading />;
 
   return (
     <Box>

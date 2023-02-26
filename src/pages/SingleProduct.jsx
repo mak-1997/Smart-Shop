@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -19,12 +20,16 @@ import {
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
+import Loading from "./Loading";
+import Footer from "../component/Footer";
 import { GetSingleProduct, updateSingleProductData, } from "../redux/SingleProduct/single.action";
 import { addToCart, deleteFromCart } from "../redux/Cart/cart.action";
 
 function SingleProduct() {
   const { productId } = useParams();
-  const { singleProduct } = useSelector((store) => store.singleProduct);
+  const { singleProduct, isLoading } = useSelector(
+    (store) => store.singleProduct
+  );
 
   const dispatch = useDispatch();
 
@@ -42,6 +47,8 @@ function SingleProduct() {
   useEffect(() => {
     dispatch(GetSingleProduct(Number(productId)));
   }, []);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div>
@@ -196,6 +203,7 @@ function SingleProduct() {
           </Stack>
         </SimpleGrid>
       </Container>
+      <Footer />
     </div>
   );
 }
