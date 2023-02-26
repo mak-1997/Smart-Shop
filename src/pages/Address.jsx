@@ -2,6 +2,7 @@ import { Heading } from "@chakra-ui/layout";
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Footer from "../component/Footer";
+import Navbar from "../component/Navbar";
 import "../styles/Payment.css";
 
 const initAdress = {
@@ -31,6 +32,7 @@ const Address = () => {
   console.log(address);
   return (
     <>
+    <Navbar />
       <div>
         <Heading mt={20} textAlign="center">
           Delivery Address
