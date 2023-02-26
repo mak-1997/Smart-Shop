@@ -24,7 +24,7 @@ const initDetails = {
 };
 
 const Payment = () => {
-  const totalAmount = useSelector((store) => store.cart.totalPrice);
+  // const totalAmount = useSelector((store) => store.cart.totalPrice);
   const [details, setDetails] = useState(initDetails);
   const toast = useToast();
   const navigate = useNavigate();
@@ -47,6 +47,8 @@ const Payment = () => {
     onOpen();
   };
 
+  const cartTotal = useSelector((store) => store.cart.cartTotal);
+
   return (
     <div>
       <Heading mt={20} textAlign="center">
@@ -58,7 +60,7 @@ const Payment = () => {
         fontWeight="bold"
         textAlign="center"
       >
-        Total Amount will be deduct ₹ {totalAmount}
+        Total Amount will be deduct ₹ {cartTotal}
       </Text>
       <Box>
         <Spacer h="100" />
