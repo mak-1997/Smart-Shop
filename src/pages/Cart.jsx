@@ -14,24 +14,13 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  // const [cartTotal, setTotal] = React.useState(0);
-
   const handleShipping = () => {
     navigate("/payment");
   };
 
-  // const calculateTotal = React.useCallback(() => {
-  //   setTotal(
-  //     cartData.reduce(
-  //       (accumulate, elem) => accumulate + elem.price * elem.orderedQuantity,
-  //       0
-  //     )
-  //   );
-  // },[cartData]);
-
-  React.useEffect(()=>{
-    dispatch(calculateTotal(cartData))
-  },[cartData]);
+  React.useEffect(() => {
+    dispatch(calculateTotal(cartData));
+  }, [cartData]);
 
   React.useEffect(() => {
     dispatch(getCartItems());
@@ -74,9 +63,7 @@ const Cart = () => {
                   <Box display="flex" justifyContent={"center"} margin="1">
                     <Button
                       size="sm"
-                      onClick={() =>
-                        dispatch(handleQuantityChange(elem, -1))
-                      }
+                      onClick={() => dispatch(handleQuantityChange(elem, -1))}
                       isDisabled={elem.orderedQuantity === 1}
                     >
                       -
@@ -91,14 +78,12 @@ const Cart = () => {
                     </Text>
                     <Button
                       size="sm"
-                      onClick={() =>
-                        dispatch(handleQuantityChange(elem, 1))
-                      }
+                      onClick={() => dispatch(handleQuantityChange(elem, 1))}
                     >
                       +
                     </Button>
                   </Box>
-                  <Box>
+                  <Box display={"flex"} flexDirection="column">
                     <Box>
                       <Box
                         bg="blue.400"
@@ -119,6 +104,7 @@ const Cart = () => {
                       </Box>
                     </Box>
                     <Button
+                      alignSelf={"center"}
                       size="sm"
                       marginTop={"1"}
                       onClick={() => dispatch(deleteFromCart(elem))}
