@@ -46,7 +46,7 @@ function ProductCards(data) {
         position="relative"
       >
         <RouterLink to={`/mensclothing/${id}`}>
-          <Flex justifyContent={"center"}>
+          <Flex justifyContent={"center"} height="300px" width={"250px"}  >
             <Image src={poster} alt={`Picture of ${title}`} roundedTop="lg" />
           </Flex>
         </RouterLink>
