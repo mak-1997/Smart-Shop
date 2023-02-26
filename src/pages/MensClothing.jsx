@@ -55,8 +55,8 @@ const MensClothing = () => {
             >
               Prev
             </Button>
-            <Box width={"2rem"} align={"center"}>
-              <Text as="b"> {page} </Text>
+            <Box width={"2rem"} align={"center"} paddingTop="0.5" >
+              <Text as="b" > {page} </Text>
             </Box>
             <Button size={"sm"} onClick={() => handlePageChange(1)}>
               Next
