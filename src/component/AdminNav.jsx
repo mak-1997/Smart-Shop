@@ -72,7 +72,7 @@ export default function AdminNav() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <RouterLink to="/">
-              <Box color={"white"}>Logo</Box>
+              <Box color={"white"}>Home</Box>
             </RouterLink>
             <HStack
               as={"nav"}
