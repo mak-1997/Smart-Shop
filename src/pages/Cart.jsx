@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text, Grid, Image, Button } from "@chakra-ui/react";
-import { getCartItems } from "../redux/Cart/cart.action";
+import { calculateTotal, getCartItems } from "../redux/Cart/cart.action";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,28 +10,17 @@ import { handleQuantityChange } from "../redux/Cart/cart.action";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartData = useSelector((store) => store.cart.data);
+  const cartTotal = useSelector((store) => store.cart.cartTotal);
 
   const navigate = useNavigate();
 
-  const [total, setTotal] = React.useState(0);
-
   const handleShipping = () => {
-    alert("Your order has been placed!");
-    navigate("/");
+    navigate("/payment");
   };
 
-  const calculateTotal = React.useCallback(() => {
-    setTotal(
-      cartData.reduce(
-        (accumulate, elem) => accumulate + elem.price * elem.orderedQuantity,
-        0
-      )
-    );
-  },[cartData]);
-
-  React.useEffect(()=>{
-    calculateTotal();
-  },[cartData]);
+  React.useEffect(() => {
+    dispatch(calculateTotal(cartData));
+  }, [cartData]);
 
   React.useEffect(() => {
     dispatch(getCartItems());
@@ -74,9 +63,7 @@ const Cart = () => {
                   <Box display="flex" justifyContent={"center"} margin="1">
                     <Button
                       size="sm"
-                      onClick={() =>
-                        dispatch(handleQuantityChange(elem, -1))
-                      }
+                      onClick={() => dispatch(handleQuantityChange(elem, -1))}
                       isDisabled={elem.orderedQuantity === 1}
                     >
                       -
@@ -91,14 +78,12 @@ const Cart = () => {
                     </Text>
                     <Button
                       size="sm"
-                      onClick={() =>
-                        dispatch(handleQuantityChange(elem, 1))
-                      }
+                      onClick={() => dispatch(handleQuantityChange(elem, 1))}
                     >
                       +
                     </Button>
                   </Box>
-                  <Box>
+                  <Box display={"flex"} flexDirection="column">
                     <Box>
                       <Box
                         bg="blue.400"
@@ -119,6 +104,7 @@ const Cart = () => {
                       </Box>
                     </Box>
                     <Button
+                      alignSelf={"center"}
                       size="sm"
                       marginTop={"1"}
                       onClick={() => dispatch(deleteFromCart(elem))}
@@ -152,7 +138,7 @@ const Cart = () => {
                 justifyContent="space-between"
               >
                 <Text>Cart Total</Text>
-                <Text>₹{}</Text>
+                <Text>₹{cartTotal}</Text>
               </Box>
 
               <Box
@@ -171,7 +157,7 @@ const Cart = () => {
                 justifyContent="space-between"
               >
                 <Text as="b">Order Total</Text>
-                <Text as="b">₹{total}.00</Text>
+                <Text as="b">₹{cartTotal}.00</Text>
               </Box>
               <Button
                 width={"100%"}

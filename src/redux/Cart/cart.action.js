@@ -46,3 +46,6 @@ export const handleQuantityChange = (data,change) => async(dispatch) =>{
     }
 }
 
+export const calculateTotal = (data) => (dispatch) => {
+    dispatch({type: types.CALCULATE_TOTAL, payload: data});
+}
