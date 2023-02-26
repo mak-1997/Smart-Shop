@@ -5,6 +5,7 @@ const initialState = {
     isLoading: false,
     isError: false,
     data: [],
+    CartTotal: 0,
 };
 export const reducer = (state = initialState, action) => {
     const { type, payload } = action;
@@ -42,6 +43,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state, isLoading: false, isError: true,
             }
+        }
+        case types.CALCULATE_TOTAL: {
+            let total = payload.reduce(
+                (accumulate, elem) => accumulate + elem.price * elem.orderedQuantity, 0);
+            return { ...state, cartTotal: total };
         }
         default: {
             return state;

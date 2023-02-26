@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text, Grid, Image, Button } from "@chakra-ui/react";
-import { getCartItems } from "../redux/Cart/cart.action";
+import { calculateTotal, getCartItems } from "../redux/Cart/cart.action";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,27 +10,27 @@ import { handleQuantityChange } from "../redux/Cart/cart.action";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartData = useSelector((store) => store.cart.data);
+  const cartTotal = useSelector((store) => store.cart.cartTotal);
 
   const navigate = useNavigate();
 
-  const [total, setTotal] = React.useState(0);
+  // const [cartTotal, setTotal] = React.useState(0);
 
   const handleShipping = () => {
-    alert("Your order has been placed!");
-    navigate("/");
+    navigate("/payment");
   };
 
-  const calculateTotal = React.useCallback(() => {
-    setTotal(
-      cartData.reduce(
-        (accumulate, elem) => accumulate + elem.price * elem.orderedQuantity,
-        0
-      )
-    );
-  },[cartData]);
+  // const calculateTotal = React.useCallback(() => {
+  //   setTotal(
+  //     cartData.reduce(
+  //       (accumulate, elem) => accumulate + elem.price * elem.orderedQuantity,
+  //       0
+  //     )
+  //   );
+  // },[cartData]);
 
   React.useEffect(()=>{
-    calculateTotal();
+    dispatch(calculateTotal(cartData))
   },[cartData]);
 
   React.useEffect(() => {
@@ -152,7 +152,7 @@ const Cart = () => {
                 justifyContent="space-between"
               >
                 <Text>Cart Total</Text>
-                <Text>₹{}</Text>
+                <Text>₹{cartTotal}</Text>
               </Box>
 
               <Box
@@ -171,7 +171,7 @@ const Cart = () => {
                 justifyContent="space-between"
               >
                 <Text as="b">Order Total</Text>
-                <Text as="b">₹{total}.00</Text>
+                <Text as="b">₹{cartTotal}.00</Text>
               </Box>
               <Button
                 width={"100%"}

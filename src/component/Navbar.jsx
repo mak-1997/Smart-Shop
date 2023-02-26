@@ -50,6 +50,7 @@ import {
   RegisterUser,
 } from "../redux/Auth/auth.action";
 import { getItemSession } from "../utility/localStorage";
+import { getCartItems } from "../redux/Cart/cart.action";
 
 const Navbar = () => {
   const initState = {
@@ -68,7 +69,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const cart = useSelector((store) => store.cart.data);
+  const cartData = useSelector((store) => store.cart.data);
 
 
   const handlechenge = (e) => {
@@ -145,6 +146,7 @@ const Navbar = () => {
   useEffect(() => {
     if (users.length === 0) {
       dispatch(GetUsersData());
+      dispatch(getCartItems());
     }
   }, []);
 
@@ -199,7 +201,7 @@ const Navbar = () => {
                   <Box display="flex" gap="1">
                     <BsCart2 fontSize="20px" color="#dbdbdb" cursor="pointer" />
                     <Box bg="white" h="1rem" w="1rem" borderRadius={"50%"} display="flex" justifyContent="center" alignItems="center">
-                      <Text as="b" fontSize={"smaller"}> {cart.length} </Text>
+                      <Text as="b" fontSize={"smaller"}> {cartData.length} </Text>
                     </Box>
                   </Box>
                   <Text cursor="pointer" fontSize="12px" color="white">
