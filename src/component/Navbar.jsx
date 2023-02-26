@@ -32,7 +32,7 @@ import {
 import { TiThSmall } from "react-icons/ti";
 import { ImUserCheck } from "react-icons/im";
 import { RiCustomerServiceFill } from "react-icons/ri";
-import { BsQuestionCircle, BsShop } from "react-icons/bs";
+import { BsQuestionCircle, BsShop, BsCart2 } from "react-icons/bs";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { MdOutlineMessage, MdSendToMobile } from "react-icons/md";
 import { BiMessageDetail, BiMobile, BiUserCircle } from "react-icons/bi";
@@ -67,6 +67,9 @@ const Navbar = () => {
   const [conform, setConform] = useState("");
   const navigate = useNavigate();
   const toast = useToast();
+
+  const cart = useSelector((store) => store.cart.data);
+
 
   const handlechenge = (e) => {
     const { name, value } = e.target;
@@ -164,14 +167,16 @@ const Navbar = () => {
               display={{ base: "none", md: "flex" }}
             >
               <Box align="center">
-                <AiOutlineTag
-                  fontSize="20px"
-                  color="#dbdbdb"
-                  cursor="pointer"
-                />
-                <Text cursor="pointer" fontSize="12px" color="white">
-                  Shopping
-                </Text>
+                <Link to="/mensclothing">
+                  <AiOutlineTag
+                    fontSize="20px"
+                    color="#dbdbdb"
+                    cursor="pointer"
+                  />
+                  <Text cursor="pointer" fontSize="12px" color="white">
+                    Shopping
+                  </Text>
+                </Link>
               </Box>
               <Box align="center">
                 <BsShop fontSize="20px" color="#dbdbdb" cursor="pointer" />
@@ -186,18 +191,21 @@ const Navbar = () => {
                   cursor="pointer"
                 />
                 <Text cursor="pointer" fontSize="12px" color="white">
-                  Shopping
+                  Find
                 </Text>
               </Box>
               <Box align="center">
-                <MdOutlineMessage
-                  fontSize="20px"
-                  color="#dbdbdb"
-                  cursor="pointer"
-                />
-                <Text cursor="pointer" fontSize="12px" color="white">
-                  Message
-                </Text>
+                <Link to="/cart">
+                  <Box display="flex" gap="1">
+                    <BsCart2 fontSize="20px" color="#dbdbdb" cursor="pointer" />
+                    <Box bg="white" h="1rem" w="1rem" borderRadius={"50%"} display="flex" justifyContent="center" alignItems="center">
+                      <Text as="b" fontSize={"smaller"}> {cart.length} </Text>
+                    </Box>
+                  </Box>
+                  <Text cursor="pointer" fontSize="12px" color="white">
+                    Cart
+                  </Text>
+                </Link>
               </Box>
               <Popover>
                 <PopoverTrigger>

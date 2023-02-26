@@ -13,7 +13,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../redux/Cart/cart.action";
+import { addToCart, deleteFromCart } from "../redux/Cart/cart.action";
 import {
   updateAddProductsData,
   updateRemoveProductsData,
@@ -27,7 +27,7 @@ function ProductCards(data) {
     event.preventDefault();
     if (isAdded) {
       dispatch(updateRemoveProductsData(data));
-      dispatch(removeFromCart(data.id));
+      dispatch(deleteFromCart(data));
     } else {
       dispatch(updateAddProductsData(data));
       dispatch(addToCart(data));

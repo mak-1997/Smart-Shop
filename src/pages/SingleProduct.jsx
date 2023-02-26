@@ -20,9 +20,10 @@ import {
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
-import { GetSingleProduct } from "../redux/SingleProduct/single.action";
 import Loading from "./Loading";
 import Footer from "../component/Footer";
+import { GetSingleProduct, updateSingleProductData, } from "../redux/SingleProduct/single.action";
+import { addToCart, deleteFromCart } from "../redux/Cart/cart.action";
 
 function SingleProduct() {
   const { productId } = useParams();
@@ -32,9 +33,20 @@ function SingleProduct() {
 
   const dispatch = useDispatch();
 
+  const handleCart = (event, data) => {
+    event.preventDefault();
+    if (singleProduct.isAdded) {
+      dispatch(updateSingleProductData(data,-1));
+      dispatch(deleteFromCart(data));
+    } else {
+      dispatch(updateSingleProductData(data,1));
+      dispatch(addToCart(data));
+    }
+  };
+
   useEffect(() => {
     dispatch(GetSingleProduct(Number(productId)));
-  }, [productId]);
+  }, []);
 
   if (isLoading) return <Loading />;
 
@@ -163,6 +175,7 @@ function SingleProduct() {
             </Stack>
 
             <Button
+              onClick={(event) => handleCart(event,singleProduct)}
               rounded={"none"}
               w={"full"}
               mt={8}
@@ -176,7 +189,7 @@ function SingleProduct() {
                 boxShadow: "lg",
               }}
             >
-              Add to cart
+              {singleProduct.isAdded ? "Remove from cart" : "Add to cart"}
             </Button>
 
             <Stack
