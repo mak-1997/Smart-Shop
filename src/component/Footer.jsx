@@ -9,14 +9,14 @@ import {
   Image,
 } from "@chakra-ui/react";
 import React from "react";
-import Logo from "../assets/logodark.png";
+import Logo from "../assets/footerlogo2.jpg";
 
 const Footer = () => {
   return (
     <Box borderTop="3px solid purple">
       <Container as={Stack} maxW={"6xl"} py={10}>
-        <Box height={{ base: "10px", md: "40px" }}>
-          <Image src={Logo} height="100%" />
+        <Box height={{ base: "40px", md: "40px", lg: "70px" }}>
+          <Image src={Logo} height="100%" width="80px" />
         </Box>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={"flex-start"}>

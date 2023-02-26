@@ -40,7 +40,7 @@ import { AiOutlineHome, AiOutlineSetting, AiOutlineTag } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 //-----------***------------------------------------------------------------------
-import Logo from "../assets/logo.png";
+import Logo from "../assets/mainLogo.jpg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -69,7 +69,6 @@ const Navbar = () => {
   const toast = useToast();
 
   const cart = useSelector((store) => store.cart.data);
-
 
   const handlechenge = (e) => {
     const { name, value } = e.target;
@@ -154,7 +153,7 @@ const Navbar = () => {
         <Flex h={14} alignItems={"center"} justifyContent={"space-between"}>
           <HStack spacing={{ base: 3, md: 8 }} alignItems={"center"}>
             <Link to="/">
-              <Box w={["120px", "140px", "160px", "200px"]}>
+              <Box w={["50px", "60px", "70px", "80px"]}>
                 <Image ml={{ sm: "10px", md: "20px", lg: "30px" }} src={Logo} />
               </Box>
             </Link>
@@ -198,8 +197,19 @@ const Navbar = () => {
                 <Link to="/cart">
                   <Box display="flex" gap="1">
                     <BsCart2 fontSize="20px" color="#dbdbdb" cursor="pointer" />
-                    <Box bg="white" h="1rem" w="1rem" borderRadius={"50%"} display="flex" justifyContent="center" alignItems="center">
-                      <Text as="b" fontSize={"smaller"}> {cart.length} </Text>
+                    <Box
+                      bg="white"
+                      h="1rem"
+                      w="1rem"
+                      borderRadius={"50%"}
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <Text as="b" fontSize={"smaller"}>
+                        {" "}
+                        {cart.length}{" "}
+                      </Text>
                     </Box>
                   </Box>
                   <Text cursor="pointer" fontSize="12px" color="white">
