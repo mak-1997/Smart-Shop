@@ -123,7 +123,7 @@ function AdminProducts() {
                 <Td>{item.id}</Td>
                 <Td>{item.title}</Td>
                 <Td>
-                  <Image src={item.poster} width="35%" />
+                  <Image src={item.poster} width="100%" />
                 </Td>
                 <Td>{item.price}</Td>
                 <Td>{item.avilableQuantity}</Td>
