@@ -47,7 +47,7 @@ const MensClothing = () => {
           zIndex={"1000"}
         >
           <SidebarLarge page={page} />
-          <Box display={"flex"}>
+          <Box display={"flex"} width="fit-content" >
             <Button
               isDisabled={page === 1}
               size={"sm"}
