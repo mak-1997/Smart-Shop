@@ -27,7 +27,7 @@ Smart Shop- A clone of IndiaMart.
   <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
 </p>
 
-<h3 align="center"><a href="https://github.com/mak-1997/parsimonious-mouth-5256-.git"><strong>Want to see live preview »</strong></a></h3>
+<h3 align="center"><a href="https://smart-shop-alpha.vercel.app/"><strong>Want to see live preview »</strong></a></h3>
 
 IndiaMART is India’s largest online B2B marketplace, connecting buyers with suppliers. With 60% market share of the online B2B Classified space in India, the channel focuses on providing a platform to Small & Medium Enterprises (SMEs), Large Enterprises as well as individuals. Founded in 1999, the company’s mission is ‘to make doing business easy’.
 
@@ -139,7 +139,7 @@ Start the localhost server
 
 ### vercel Link
 
-[https://github.com/mak-1997/parsimonious-mouth-5256-.git](https://github.com/mak-1997/parsimonious-mouth-5256-.git)
+[https://smart-shop-alpha.vercel.app/](https://smart-shop-alpha.vercel.app/)
 
 ## Show your support
 
