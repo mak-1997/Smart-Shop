@@ -52,7 +52,7 @@ IndiaMART is India’s largest online B2B marketplace, connecting buyers with su
 
 This is the main landing page of our website. Here, if you clicked on New Arrivals/ Clothing/ Shoes you will be redirected to that page if you are already logged in else you will be redirected to the login page.
 
-![landing page](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/homepage.jpg)
+![landing page](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/homepage.png)
 
 You can also search products in the searchbar.
 
@@ -78,9 +78,9 @@ On this page, we have used localstorage for login so you can use the email which
 
 On admin login, you will be redirected to the admin page and over there you can add, delete, update any product in the database and can also delete any user. 
 
-![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/productList.png)
+![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/productsList.png)
 ![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/addProduct.png)
-![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/userList.png)
+![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/usersList.png)
 
 ### Products Page -
 
