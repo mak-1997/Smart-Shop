@@ -24,10 +24,10 @@ Smart Shop- A clone of IndiaMart.
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/netlify-000000?style=for-the-badge&logo=netlify&logoColor=white" alt="netlify" />
+  <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
 </p>
 
-<h3 align="center"><a href="https://candid-crumble-7b020e.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
+<h3 align="center"><a href="https://github.com/mak-1997/parsimonious-mouth-5256-.git"><strong>Want to see live preview »</strong></a></h3>
 
 IndiaMART is India’s largest online B2B marketplace, connecting buyers with suppliers. With 60% market share of the online B2B Classified space in India, the channel focuses on providing a platform to Small & Medium Enterprises (SMEs), Large Enterprises as well as individuals. Founded in 1999, the company’s mission is ‘to make doing business easy’.
 
@@ -52,32 +52,52 @@ IndiaMART is India’s largest online B2B marketplace, connecting buyers with su
 
 This is the main landing page of our website. Here, if you clicked on New Arrivals/ Clothing/ Shoes you will be redirected to that page if you are already logged in else you will be redirected to the login page.
 
-![landing page](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/homepage1.png)
-![landing page](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/homepage2.png)
+![landing page](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/homepage.jpg)
 
+You can also search products in the searchbar.
+
+![landing page](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/searchbar.png)
+
+### Sign up Page -
+
+On this page, we have used localstorage for signup.  
+
+![Login](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/register.png)
 ### Sign in Page -
 
-On this page, we have used reqres api for login so you can use any email provided over there for login. There is Admin login too.  
+On this page, we have used localstorage for login so you can use the email which you have used to signup.  
 
-![Login](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/login.png)
+![Login](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/userLogin.png)
+### Admin Login -
+
+On this page, we have used localstorage for login so you can use the email which you have used to signup.  
+
+![Login](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/adminLogin.png)
 
 ###  Admin Page - 
 
-On admin login, you will be redirected to the admin page and over there you can add new products to the database. 
+On admin login, you will be redirected to the admin page and over there you can add, delete, update any product in the database and can also delete any user. 
 
-![Admin](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/admin.png)
+![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/productList.png)
+![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/addProduct.png)
+![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/userList.png)
 
-### New Arrivals/ Clothing/ Shoes Page -
+### Products Page -
 
 Here users can browse, `sort` the product based on `brand, price and discound` and add items to the cart by clicking on the `Add to Cart` button.
  
- ![Products](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/products.png)
+ ![Products](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/products.png)
+### Single Product Page -
+
+Here users can see details of an individual product and can also add/remove product to cart.
+ 
+ ![Products](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/singleProduct.png)
 
 ### Cart Page -
 
-Here all the products added to the cart will be shown. On this page, By Clicking on add to cart your cart added successfully.
+Here all the products added to the cart will be shown. On this page, By Clicking on remove from cart your product will be removed from the cart.
 
-![cart](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/cart.png)
+![cart](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/cart.png)
 
 
 
@@ -85,7 +105,7 @@ Here all the products added to the cart will be shown. On this page, By Clicking
 
 On This Page there is info about the site....
 
-![footer](https://github.com/mak-1997/fragile-hot-3247/raw/main/mytheresa/public/footer.png)
+![footer](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/footer.png)
 
 
 ## Run Locally
@@ -93,13 +113,13 @@ On This Page there is info about the site....
 Clone the project
 
 ```bash
-  git clone https://github.com/mak-1997/fragile-hot-3247.git
+  git clone https://github.com/mak-1997/parsimonious-mouth-5256-.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd fragile-hot-3247/mytheresa
+  cd parsimonious-mouth-5256-
 ```
 
 Install dependencies for frontend as well as backend
@@ -117,9 +137,9 @@ Start the localhost server
 
 ## Deployed link
 
-### Netlify Link
+### vercel Link
 
-[https://candid-crumble-7b020e.netlify.app/](https://candid-crumble-7b020e.netlify.app/)
+[https://github.com/mak-1997/parsimonious-mouth-5256-.git](https://github.com/mak-1997/parsimonious-mouth-5256-.git)
 
 ## Show your support
 
