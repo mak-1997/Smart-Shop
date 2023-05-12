@@ -61,28 +61,44 @@ const SidebarLarge = () => {
       </Box>
       <Box
         display={{ base: "none", md: "flex" }}
-        
         left="0"
         // height="100vh"
         // width={{ lg: "15rem", "2xl": "20rem" }}
-        width={'fit-content'}
+        width={"fit-content"}
         bg="gray.50"
         // p="6"
         overflowY="auto"
         borderRightWidth="1px"
-        zIndex={'1000'}
+        zIndex={"1000"}
       >
-        
-        <Select size="sm" maxWidth={'fit-content'} varient="sm" placeholder="Order By" onChange={handleOrderChange}>
+        <Select
+          size="sm"
+          maxWidth={"fit-content"}
+          varient="sm"
+          placeholder="Order By"
+          onChange={handleOrderChange}
+        >
           <option value="asc">Ascending Price</option>
           <option value="desc">Descending Price</option>
         </Select>
-        <Select size="sm" maxWidth={'fit-content'} varient="sm" placeholder="Category" onChange={handleCategoryChange}>
+        <Select
+          size="sm"
+          maxWidth={"fit-content"}
+          varient="sm"
+          placeholder="Category"
+          onChange={handleCategoryChange}
+        >
           <option value="mensTshirt">T-shirt</option>
           <option value="mensJacket">Jacket</option>
           <option value="mensTrouser">Trousers</option>
         </Select>
-        <Select size="sm" maxWidth={'fit-content'} varient="sm" placeholder="Price Range" onChange={handlePriceChange}>
+        <Select
+          size="sm"
+          maxWidth={"fit-content"}
+          varient="sm"
+          placeholder="Price Range"
+          onChange={handlePriceChange}
+        >
           <option value="400">Upto 400</option>
           <option value="500">Upto 500</option>
           <option value="700">Upto 700</option>
@@ -95,7 +111,11 @@ const SidebarLarge = () => {
           <DrawerCloseButton />
           <DrawerHeader>Filter Products</DrawerHeader>
           <DrawerBody>
-            <Select placeholder="Order By" onChange={handleOrderChange}>
+            <Select
+              placeholder="Order By"
+              p="14px"
+              onChange={handleOrderChange}
+            >
               <option value="asc">Ascending Price</option>
               <option value="desc">Descending Price</option>
             </Select>

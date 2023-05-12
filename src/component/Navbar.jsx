@@ -93,14 +93,25 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  const handleRegister = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
     try {
       dispatch(RegisterUser(cred)).then((res) => dispatch(GetUsersData()));
+      setTimeout(() => {
+        toast({
+          title: "successfully Registered ",
+          description: "",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
   };
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     let user = users.find(
       (item) => item.email === login.email && item.password === login.password
     );
@@ -200,8 +211,19 @@ const Navbar = () => {
                   <Box display="flex" gap="1">
                     <BsCart2 fontSize="20px" color="#dbdbdb" cursor="pointer" />
 
-                    <Box bg="white" h="1rem" w="1rem" borderRadius={"50%"} display="flex" justifyContent="center" alignItems="center">
-                      <Text as="b" fontSize={"smaller"}> {cartData.length} </Text>
+                    <Box
+                      bg="white"
+                      h="1rem"
+                      w="1rem"
+                      borderRadius={"50%"}
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <Text as="b" fontSize={"smaller"}>
+                        {" "}
+                        {cartData.length}{" "}
+                      </Text>
                     </Box>
                   </Box>
                   <Text cursor="pointer" fontSize="12px" color="white">
@@ -273,90 +295,115 @@ const Navbar = () => {
                             <ModalCloseButton />
                             <ModalBody textAlign={"center"} pb={6}>
                               {!Registarion && (
-                                <Flex mt={20} flexDirection={"column"} gap={2}>
-                                  <Heading color={"#333"}>Login</Heading>
-                                  <Input
-                                    placeholder="User name..."
-                                    name="email"
-                                    onChange={handlechange}
-                                  ></Input>
-                                  <Input
-                                    placeholder="Password..."
-                                    type={"password"}
-                                    name="password"
-                                    onChange={handlechange}
-                                  ></Input>
-                                  <Button
-                                    onClick={handleLogin}
-                                    fontFamily="arial"
-                                    background="-webkit-gradient(linear,left top,left bottom,from(#058b80),to(#02625a))"
-                                    colorScheme="#fff"
-                                    mr={3}
+                                <form onSubmit={handleLogin}>
+                                  <Flex
+                                    mt={20}
+                                    flexDirection={"column"}
+                                    gap={2}
                                   >
-                                    {/* {isLoading ? <Spinner /> : "Login"}{" "} */}
-                                    Login
-                                  </Button>
-                                  <Link onClick={() => setRegistarion(true)}>
-                                    Don't have an account?{" "}
-                                    <span style={{ color: "blue" }}>
-                                      Create your new account
-                                    </span>
-                                  </Link>
-                                </Flex>
+                                    <Heading color={"#333"}>Login</Heading>
+                                    <Input
+                                      placeholder="Email"
+                                      name="email"
+                                      onChange={handlechange}
+                                      isRequired
+                                    ></Input>
+                                    <Input
+                                      placeholder="Password..."
+                                      type={"password"}
+                                      name="password"
+                                      onChange={handlechange}
+                                      isRequired
+                                    ></Input>
+                                    <Button
+                                      type="submit"
+                                      fontFamily="arial"
+                                      background="-webkit-gradient(linear,left top,left bottom,from(#058b80),to(#02625a))"
+                                      colorScheme="#fff"
+                                      mr={3}
+                                    >
+                                      {/* {isLoading ? <Spinner /> : "Login"}{" "} */}
+                                      Login
+                                    </Button>
+                                    <Link onClick={() => setRegistarion(true)}>
+                                      Don't have an account?{" "}
+                                      <span style={{ color: "blue" }}>
+                                        Create your new account
+                                      </span>
+                                    </Link>
+                                  </Flex>
+                                </form>
                               )}
 
                               {Registarion && (
-                                <Flex flexDirection={"column"} gap={2}>
-                                  <Heading color={"#333"}>Registration</Heading>
-                                  <Input
-                                    placeholder="First name..."
-                                    name="firstname"
-                                    onChange={handlechenge}
-                                  ></Input>
-                                  <Input
-                                    placeholder="Last name..."
-                                    name="lastname"
-                                    onChange={handlechenge}
-                                  ></Input>
-                                  <Input
-                                    placeholder="Email..."
-                                    name="email"
-                                    onChange={handlechenge}
-                                  ></Input>
-                                  <Input
-                                    placeholder="Password..."
-                                    name="password"
-                                    type={"password"}
-                                    onChange={handlechenge}
-                                  ></Input>
+                                <form onSubmit={handleRegister}>
+                                  <Flex flexDirection={"column"} gap={2}>
+                                    <Heading color={"#333"}>
+                                      Registration
+                                    </Heading>
+                                    <Input
+                                      placeholder="First name..."
+                                      name="firstname"
+                                      onChange={handlechenge}
+                                      isRequired
+                                    ></Input>
+                                    <Input
+                                      placeholder="Last name..."
+                                      name="lastname"
+                                      onChange={handlechenge}
+                                      isRequired
+                                    ></Input>
+                                    <Input
+                                      placeholder="Email..."
+                                      name="email"
+                                      type="email"
+                                      onChange={handlechenge}
+                                      isRequired
+                                    ></Input>
+                                    <Input
+                                      placeholder="Password..."
+                                      name="password"
+                                      type={"password"}
+                                      onChange={handlechenge}
+                                    ></Input>
 
-                                  <Input
-                                    placeholder="conform Password..."
-                                    type={"password"}
-                                    onChange={(e) => setConform(e.target.value)}
-                                  ></Input>
-                                  <p style={{ color: "red" }}>
-                                    {cred.password !== undefined &&
-                                    conform !== cred.password
-                                      ? "password is not matching"
-                                      : ""}
-                                  </p>
-                                  <Button
-                                    onClick={handleRegister}
-                                    fontFamily="arial"
-                                    background="-webkit-gradient(linear,left top,left bottom,from(#058b80),to(#02625a))"
-                                    colorScheme="#fff"
-                                    mr={3}
-                                  >
-                                    {isLoading ? <Spinner /> : "Sign Up"}{" "}
-                                  </Button>
-                                  <Link
-                                    onClick={() => setRegistarion(!Registarion)}
-                                  >
-                                    {" "}
-                                    already have an account
-                                  </Link>
-                                </Flex>
+                                    <Input
+                                      placeholder="conform Password..."
+                                      type={"password"}
+                                      onChange={(e) =>
+                                        setConform(e.target.value)
+                                      }
+                                    ></Input>
+                                    <p style={{ color: "red" }}>
+                                      {cred.password !== undefined &&
+                                      conform !== cred.password
+                                        ? "password is not matching"
+                                        : ""}
+                                    </p>
+                                    <Button
+                                      type="submit"
+                                      isDisabled={
+                                        cred.password !== undefined &&
+                                        conform !== cred.password
+                                      }
+                                      fontFamily="arial"
+                                      background="-webkit-gradient(linear,left top,left bottom,from(#058b80),to(#02625a))"
+                                      colorScheme="#fff"
+                                      mr={3}
+                                    >
+                                      {isLoading ? <Spinner /> : "Sign Up"}{" "}
+                                    </Button>
+                                    <Link
+                                      onClick={() =>
+                                        setRegistarion(!Registarion)
+                                      }
+                                    >
+                                      <span style={{ color: "blue" }}>
+                                        Login
+                                      </span>
+                                    </Link>
+                                  </Flex>
+                                </form>
                               )}
                             </ModalBody>
                           </ModalContent>

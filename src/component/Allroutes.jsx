@@ -16,7 +16,14 @@ const Allroutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/mensclothing" element={<MensClothing />} />
+      <Route
+        path="/mensclothing"
+        element={
+          <ReqAuth>
+            <MensClothing />
+          </ReqAuth>
+        }
+      />
       <Route path="/admin" element={<Admin />} />
       <Route
         path="/admin/users"
@@ -37,7 +44,14 @@ const Allroutes = () => {
       <Route path="/mensclothing/:productId" element={<SingleProduct />} />
       <Route path="/address" element={<Address />} />
       <Route path="/payment" element={<Payment />} />
-      <Route path= "/cart" element={<Cart />} />
+      <Route
+        path="/cart"
+        element={
+          <ReqAuth>
+            <Cart />
+          </ReqAuth>
+        }
+      />
     </Routes>
   );
 };

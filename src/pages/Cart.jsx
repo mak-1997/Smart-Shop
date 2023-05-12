@@ -54,16 +54,25 @@ const Cart = () => {
                   justifyContent="space-between"
                   border={"1px solid gray"}
                   marginTop="5"
+                  height={"auto"}
                 >
-                  <Image src={elem.poster} height={"200px"} alt={elem.name} />
+                  <Image src={elem.poster} height={"216"} alt={elem.name} />
                   <Box width={"300px"}>
-                    <Box>
-                      <Text> {elem.title}</Text>
+                    <Box mt={"5px"}>
+                      <Text fontSize={"lg"} fontWeight={"600"}>
+                        {" "}
+                        {elem.title}
+                      </Text>
 
-                      <Text> Color: {elem.color}</Text>
-                      <Text> Size: {elem.size}</Text>
+                      <Text fontSize={"md"}> Color: {elem.color}</Text>
+                      <Text fontSize={"md"}> Size: {elem.size}</Text>
                     </Box>
-                    <Box display="flex" justifyContent={"center"} margin="1">
+                    <Box
+                      pb={"5px"}
+                      display="flex"
+                      justifyContent={"center"}
+                      margin="1"
+                    >
                       <Button
                         size="sm"
                         onClick={() => dispatch(handleQuantityChange(elem, -1))}
@@ -86,7 +95,7 @@ const Cart = () => {
                         +
                       </Button>
                     </Box>
-                    <Box display={"flex"} flexDirection="column">
+                    <Box display={"flex"} flexDirection="column" pb={"5px"}>
                       <Box>
                         <Box
                           bg="blue.400"
@@ -103,7 +112,9 @@ const Cart = () => {
                           >
                             {"."}{" "}
                           </Box>
-                          <Text as="b">Rs. {elem.price}.00</Text>
+                          <Text as="b" pb={"5px"}>
+                            Rs. {elem.price}.00
+                          </Text>
                         </Box>
                       </Box>
                       <Button
@@ -111,6 +122,7 @@ const Cart = () => {
                         size="sm"
                         marginTop={"1"}
                         onClick={() => dispatch(deleteFromCart(elem))}
+                        mt="5px"
                       >
                         Delete
                       </Button>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Grid, Button } from "@chakra-ui/react";
+import { Box, Text, Grid, Button, Heading } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getData,
@@ -11,6 +11,7 @@ import Loading from "./Loading";
 import Footer from "../component/Footer";
 import { setPage } from "../redux/Products/products.action";
 import Navbar from "../component/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const MensClothing = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,8 @@ const MensClothing = () => {
           bg="#F7FAFC"
           paddingLeft={"5"}
           paddingRight="5"
-          zIndex={"1000"}
+          height={"auto"}
+          // zIndex={"1000"}
         >
           <SidebarLarge page={page} />
           <Box display={"flex"}>
@@ -55,14 +57,17 @@ const MensClothing = () => {
             >
               Prev
             </Button>
-            <Box width={"2rem"} align={"center"} paddingTop="0.5" >
-              <Text as="b" > {page} </Text>
+            <Box width={"2rem"} align={"center"} paddingTop="0.5">
+              <Text as="b"> {page} </Text>
             </Box>
             <Button size={"sm"} onClick={() => handlePageChange(1)}>
               Next
             </Button>
           </Box>
         </Box>
+        <Heading mt={"140px"} textAlign={"center"}>
+          Clothing
+        </Heading>
         <Box
           // display={{ lg: "flex" }}
           maxWidth={{ base: "100%", lg: "90%", "2xl": "80%" }}
