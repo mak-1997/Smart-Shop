@@ -62,7 +62,6 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Registarion, setRegistarion] = useState(false);
   const [admin, setAdmin] = useState(false);
-  // const { isOpen, onOpen, onClose } = useDisclosure()
   const [cred, setCred] = useState(initState);
   const [login, setLogin] = useState({});
   const [conform, setConform] = useState("");
