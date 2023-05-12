@@ -25,7 +25,7 @@ export const getFilteredData = async (category, maxPrice, order,page) => {
     if (category) {
       url += `category=${category}&`;
     }
-    if (maxPrice !== Infinity) {
+    if (maxPrice ) {
       url += `price_lte=${maxPrice}&`;
     }
     if (order) {
@@ -33,7 +33,7 @@ export const getFilteredData = async (category, maxPrice, order,page) => {
     }
     url = url.slice(0, -1); // remove trailing "&"
 
-    // console.log(url)
+    console.log(url)
   
     let res = await axios.get(url);
     return res.data;

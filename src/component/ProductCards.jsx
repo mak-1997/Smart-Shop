@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Flex,
   Box,
@@ -35,9 +35,9 @@ function ProductCards(data) {
   };
 
   return (
-    <Flex maxW="fit-content" alignItems="center" justifyContent="center"  >
+    <Flex maxW="fit-content" alignItems="center" justifyContent="center">
       <Box
-      _hover={{transform:"scale(1.05)"}}
+        _hover={{ transform: "scale(1.05)" }}
         bg={useColorModeValue("white", "gray.800")}
         maxW="sm"
         borderWidth="1px"
@@ -46,8 +46,10 @@ function ProductCards(data) {
         position="relative"
       >
         <RouterLink to={`/mensclothing/${id}`}>
-          <Flex justifyContent={"center"} height="300px" width={"250px"}  >
-            <Image src={poster} alt={`Picture of ${title}`} roundedTop="lg" />
+          <Flex justifyContent={"center"}>
+            <Flex justifyContent={"center"} height="300px" width={"220px"}>
+              <Image src={poster} alt={`Picture of ${title}`} roundedTop="lg" />
+            </Flex>
           </Flex>
         </RouterLink>
 
