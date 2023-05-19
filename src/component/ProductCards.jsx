@@ -7,7 +7,7 @@ import {
   Icon,
   chakra,
   Tooltip,
-  transition,
+  useToast,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
@@ -22,15 +22,30 @@ import {
 function ProductCards(data) {
   const { poster, price, title, isAdded, id } = data;
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const handleCart = (event, data) => {
     event.preventDefault();
     if (isAdded) {
       dispatch(updateRemoveProductsData(data));
       dispatch(deleteFromCart(data));
+      toast({
+        title: "Item Removed From Cart",
+        description: "",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     } else {
       dispatch(updateAddProductsData(data));
       dispatch(addToCart(data));
+      toast({
+        title: "Item Added in Cart",
+        description: "",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
@@ -47,8 +62,13 @@ function ProductCards(data) {
       >
         <RouterLink to={`/mensclothing/${id}`}>
           <Flex justifyContent={"center"}>
-            <Flex justifyContent={"center"} height="300px" width={"220px"}>
-              <Image src={poster} alt={`Picture of ${title}`} roundedTop="lg" />
+            <Flex justifyContent={"center"} height="300px" width={"100%"}>
+              <Image
+                src={poster}
+                alt={`Picture of ${title}`}
+                roundedTop="lg"
+                width={"100%"}
+              />
             </Flex>
           </Flex>
         </RouterLink>

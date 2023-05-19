@@ -25,3 +25,14 @@ export const changeQuantityAPI = async (payload, change) => {
     return res.data;
 }
 
+export const emptyCartAPI = async (id) => {
+  axios
+    .delete(`https://smart-shop-render.onrender.com/cart/${id}`)
+    .then((response) => {
+      console.log("Data has been emptied");
+    })
+    .catch((error) => {
+      console.error("Error emptying data:", error);
+    });
+};
+

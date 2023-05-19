@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminNav from "../component/AdminNav";
 import {
   Flex,
   Box,
@@ -27,7 +26,7 @@ function Admin() {
     password: "",
   };
   const [loginData, setLoginData] = useState(initialState);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {  onClose } = useDisclosure();
   const { isAuth } = useSelector((store) => store.admin);
   console.log(isAuth);
   const dispatch = useDispatch();
@@ -44,6 +43,7 @@ function Admin() {
       loginData.password === adminData.password
     ) {
       dispatch(AdminLogin());
+      sessionStorage.setItem("admin", "admin");
       toast({
         title: "successfully sign in ",
         description: "",
@@ -52,7 +52,7 @@ function Admin() {
         isClosable: true,
       });
       onClose();
-      navigate("/admin/products");
+      navigate("/admin/adminhome");
     } else {
       toast({
         title: "Wrong Credentials ",
@@ -65,7 +65,6 @@ function Admin() {
   };
   return (
     <div>
-      <AdminNav />
       <Flex
         minH={"100vh"}
         align={"center"}

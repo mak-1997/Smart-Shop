@@ -90,6 +90,8 @@ const Navbar = () => {
     (store) => store.auth
   );
 
+  console.log(isAuth);
+
   const dispatch = useDispatch();
 
   const handleRegister = (e) => {
@@ -101,10 +103,11 @@ const Navbar = () => {
           title: "successfully Registered ",
           description: "",
           status: "success",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
-      }, 3000);
+      }, 1000);
+      setRegistarion(false);
     } catch (error) {
       console.log(error);
     }
@@ -321,8 +324,7 @@ const Navbar = () => {
                                       colorScheme="#fff"
                                       mr={3}
                                     >
-                                      {/* {isLoading ? <Spinner /> : "Login"}{" "} */}
-                                      Login
+                                      {isLoading ? <Spinner /> : "Login"}
                                     </Button>
                                     <Link onClick={() => setRegistarion(true)}>
                                       Don't have an account?{" "}
@@ -392,11 +394,7 @@ const Navbar = () => {
                                     >
                                       {isLoading ? <Spinner /> : "Sign Up"}{" "}
                                     </Button>
-                                    <Link
-                                      onClick={() =>
-                                        setRegistarion(!Registarion)
-                                      }
-                                    >
+                                    <Link onClick={() => setRegistarion(false)}>
                                       <span style={{ color: "blue" }}>
                                         Login
                                       </span>

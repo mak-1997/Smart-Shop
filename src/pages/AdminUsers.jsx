@@ -1,28 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AdminNav from "../component/AdminNav";
 import { DeleteAdminUser, getAdminUsers } from "../redux/Admin/admin.action";
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
+
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
-  Image,
+
   useToast,
   Button,
   Heading,
+  Box,
 } from "@chakra-ui/react";
 import { MdDeleteForever } from "react-icons/md";
-import { BiEdit } from "react-icons/bi";
+
 import Loading from "./Loading";
+import SidebarAdmin from "../component/SidebarAdmin";
 
 function AdminUsers() {
-  const { isLoading, isError, users } = useSelector((store) => store.admin);
+  const { isLoading, users } = useSelector((store) => store.admin);
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -47,45 +48,49 @@ function AdminUsers() {
   }, []);
   if (isLoading) return <Loading />;
   return (
-    <div>
-      <AdminNav />
-      <Heading mt={8} mb={8} textAlign={"center"}>
-        Users
-      </Heading>
-      <TableContainer>
-        <Table variant="striped" colorScheme="teal">
-          <TableCaption>Imperial to metric conversion factors</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>ID</Th>
-              <Th>Firstname</Th>
-              <Th>Lastname</Th>
-              <Th>Email</Th>
-              <Th>Delete User</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {users.map((item) => (
-              <Tr>
-                <Td>{item.id}</Td>
-                <Td>{item.firstname}</Td>
+    <>
+      <SidebarAdmin />
+      <Box margin={"auto"} ml={"20%"} width={["90%", "80%"]}>
+        <Heading mt={"50px"} mb={"50px"} textAlign={"center"}>
+          Users
+        </Heading>
+        <Box maxHeight={"500px"} overflow="scroll">
+          <TableContainer overflowX={"auto"}>
+            <Table variant="striped" colorScheme="teal" size={["sm", "md"]}>
+              <TableCaption>Imperial to metric conversion factors</TableCaption>
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Firstname</Th>
+                  <Th>Lastname</Th>
+                  <Th>Email</Th>
+                  <Th>Delete User</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {users.map((item) => (
+                  <Tr>
+                    <Td>{item.id}</Td>
+                    <Td>{item.firstname}</Td>
 
-                <Td>{item.lastname}</Td>
-                <Td>{item.email}</Td>
-                <Td>
-                  <Button
-                    colorScheme="red"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    <MdDeleteForever />
-                  </Button>
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </div>
+                    <Td>{item.lastname}</Td>
+                    <Td>{item.email}</Td>
+                    <Td>
+                      <Button
+                        colorScheme="red"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        <MdDeleteForever />
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Box>
+      </Box>
+    </>
   );
 }
 

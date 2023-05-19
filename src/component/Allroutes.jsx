@@ -8,9 +8,10 @@ import AdminProducts from "../pages/AdminProducts";
 import AdminUsers from "../pages/AdminUsers";
 import SingleProduct from "../pages/SingleProduct";
 import Address from "../pages/Address";
-import Payment from "../pages/Payment";
-import Cart from '../pages/Cart';
-
+import Cart from "../pages/Cart";
+import Footer from "./Footer";
+import ReqAdminAuth from "../HOC/ReqAdminAuth";
+import AdminHome from "../pages/AdminHome";
 
 const Allroutes = () => {
   return (
@@ -21,35 +22,37 @@ const Allroutes = () => {
         element={
           <ReqAuth>
             <MensClothing />
+            <Footer />
           </ReqAuth>
         }
       />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/adminhome" element={<AdminHome />} />
       <Route
         path="/admin/users"
         element={
-          <ReqAuth>
+          <ReqAdminAuth>
             <AdminUsers />
-          </ReqAuth>
+          </ReqAdminAuth>
         }
       />
       <Route
         path="/admin/products"
         element={
-          <ReqAuth>
+          <ReqAdminAuth>
             <AdminProducts />
-          </ReqAuth>
+          </ReqAdminAuth>
         }
       />
       <Route path="/mensclothing/:productId" element={<SingleProduct />} />
       <Route path="/address" element={<Address />} />
-      <Route path="/payment" element={<Payment />} />
       <Route
         path="/cart"
         element={
-          <ReqAuth>
+          <>
             <Cart />
-          </ReqAuth>
+            <Footer />
+          </>
         }
       />
     </Routes>

@@ -50,7 +50,7 @@ export const Authreducer = (state = initialState, { type, payload }) => {
         ...state,
         isAuth: true,
         username: payload,
-        isLoading: false,
+        isLoading: true,
       };
     case LOGOUT:
       return {

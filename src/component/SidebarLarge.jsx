@@ -10,7 +10,6 @@ import {
   DrawerCloseButton,
   DrawerHeader,
   DrawerBody,
-  Text,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import {

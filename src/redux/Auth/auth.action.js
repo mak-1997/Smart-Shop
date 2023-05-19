@@ -45,6 +45,7 @@ export const GetUsersData = () => async (dispatch) => {
 };
 
 export const LoginCheck = (username) => async (dispatch) => {
+  dispatch({ type: LOADING });
   try {
     dispatch({ type: Login, payload: username });
     setItemSession("LoginUser", username);

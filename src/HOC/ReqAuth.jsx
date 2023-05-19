@@ -1,21 +1,27 @@
+import {  useToast } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const ReqAuth = ({ children }) => {
-  const { isAuth } = useSelector((state) => state.admin);
-  const { isAuth: isAuthenticated } = useSelector((state) => state.auth);
-  console.log(isAuth);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
+  const toast = useToast();
 
-  if (isAuth) {
-    return children;
-  } else if (isAuthenticated) {
-    return children;
-  } else {
-    alert("Please login First!");
-    return <Navigate to={`${!isAuthenticated ? "/" : "/admin"}`} />;
+  if (!sessionStorage.getItem("LoginUser")) {
+    toast({
+      title: "Login Required",
+      description: "",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+    return <Navigate to="/" />;
   }
+
+  // if (!isAdminAuthenticated) {
+  //   return <Navigate to={"/admin"} />;
+  // }
+
+  return children;
 };
 
 export default ReqAuth;
