@@ -103,7 +103,11 @@ Here all the products added to the cart will be shown. On this page, By Clicking
 
 ![cart](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/cart.png)
 
+### Checkout Page -
 
+![Checkout](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/checkout1.png)
+![Checkout](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/checkout2.png)
+![Checkout](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/checkout3.png)
 
 ### Footer Page -
 
