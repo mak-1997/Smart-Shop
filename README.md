@@ -78,7 +78,7 @@ On this page, we have used localstorage for login so you can use the email which
 
 On admin login, you will be redirected to the admin page and over there you can add, delete, update any product in the database and can also delete any user. 
 
-![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/productsList.png)
+![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/allproductsadmin.png)
 ![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/addProduct.png)
 ![Admin](https://github.com/mak-1997/parsimonious-mouth-5256-/raw/main/public/usersList.png)
 
