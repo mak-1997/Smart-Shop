@@ -58,7 +58,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case types.DELETE_ADMIN_USERS:
       return {
         ...state,
-        users: state.users.filter((item) => item.id !== payload),
+        users: state.users.filter((item) => item._id !== payload),
       };
     case types.ADD_PRODUCT_ADMIN_SUCCESS:
       return {

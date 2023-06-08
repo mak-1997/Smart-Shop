@@ -24,6 +24,7 @@ import SidebarAdmin from "../component/SidebarAdmin";
 
 function AdminUsers() {
   const { isLoading, users } = useSelector((store) => store.admin);
+  
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -70,7 +71,7 @@ function AdminUsers() {
               <Tbody>
                 {users.map((item) => (
                   <Tr>
-                    <Td>{item.id}</Td>
+                    <Td>{item._id}</Td>
                     <Td>{item.firstname}</Td>
 
                     <Td>{item.lastname}</Td>
@@ -78,7 +79,7 @@ function AdminUsers() {
                     <Td>
                       <Button
                         colorScheme="red"
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item._id)}
                       >
                         <MdDeleteForever />
                       </Button>

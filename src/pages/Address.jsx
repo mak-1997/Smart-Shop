@@ -30,7 +30,7 @@ const Address = () => {
   //   navigate("/payment");
   // };
 
-  console.log(address);
+
   return (
     <>
       <Navbar />

@@ -26,9 +26,9 @@ export const reducer = (state = initialState, action) => {
             }
         }
         case types.DELETE_FROM_CART: {
-            console.log(payload)
+      
             const updatedData = state.data.filter((elem) => elem.id !== payload);
-            console.log(updatedData)
+
             return {
                 ...state, isLoading: false, isError: false, data: updatedData,
             }

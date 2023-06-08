@@ -51,6 +51,7 @@ import {
 } from "../redux/Auth/auth.action";
 import { getItemSession } from "../utility/localStorage";
 import { getCartItems } from "../redux/Cart/cart.action";
+import axios from "axios";
 
 const Navbar = () => {
   const initState = {
@@ -65,6 +66,7 @@ const Navbar = () => {
   const [cred, setCred] = useState(initState);
   const [login, setLogin] = useState({});
   const [conform, setConform] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -90,8 +92,6 @@ const Navbar = () => {
     (store) => store.auth
   );
 
-  console.log(isAuth);
-
   const dispatch = useDispatch();
 
   const handleRegister = (e) => {
@@ -114,34 +114,34 @@ const Navbar = () => {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
-    let user = users.find(
-      (item) => item.email === login.email && item.password === login.password
-    );
+
     try {
-      setTimeout(() => {
-        if (user) {
-          dispatch(LoginCheck(user.firstname));
-          toast({
-            title: "successfully sign in ",
-            description: "",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
-          onClose();
-          navigate("/");
-        } else {
-          toast({
-            title: "wrong username or password ",
-            description: "",
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-            backgroundColor: "red",
-          });
-        }
-      }, 1000);
-    } catch (error) {}
+      const res = await axios.post(
+        `https://joyous-pig-stockings.cyclic.app/users/login`,
+
+        login
+      );
+      dispatch(LoginCheck(res.data.firstname));
+      toast({
+        title: "successfully sign in ",
+        description: "",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      onClose();
+      navigate("/");
+    } catch (err) {
+      setError(err.response.data);
+      toast({
+        title: error,
+        description: "",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        backgroundColor: "red",
+      });
+    }
   };
 
   const handleLogout = () => {

@@ -28,7 +28,7 @@ function Admin() {
   const [loginData, setLoginData] = useState(initialState);
   const {  onClose } = useDisclosure();
   const { isAuth } = useSelector((store) => store.admin);
-  console.log(isAuth);
+
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();

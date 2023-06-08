@@ -18,7 +18,7 @@ export const deleteFromCartAPI = async (id) => {
 }
 
 export const changeQuantityAPI = async (payload, change) => {
-    console.log(payload, change)
+
     const res = await axios.patch(`https://smart-shop-render.onrender.com/cart/${payload.id}`, {
         ...payload, orderedQuantity: payload.orderedQuantity + change, avilableQuantity: payload.avilableQuantity - change,
     });

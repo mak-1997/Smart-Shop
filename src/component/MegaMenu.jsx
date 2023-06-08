@@ -42,6 +42,7 @@ const MegaMenu = () => {
                 src={image1}
                 h="100%"
               />
+
               <Text fontSize={{ base: "12px", sm: "14px", md: "16px" }}>
                 Building & Construction
               </Text>
@@ -71,13 +72,16 @@ const MegaMenu = () => {
                   Wood, Plywood,
                   <br /> Veneer & Laminates
                 </MenuItem>
-                <MenuItem
-                  fontStyle="Arial,Helvetica,sans-serif"
-                  fontSize={{ base: "9px", sm: "10px", md: "12px" }}
-                  p={{ base: "3px 0px 3px 5px", md: "4px 0px 4px 10px" }}
-                >
-                  Plywoods{" "}
-                </MenuItem>
+                <Link to={"/mensclothing"}>
+                  {" "}
+                  <MenuItem
+                    fontStyle="Arial,Helvetica,sans-serif"
+                    fontSize={{ base: "9px", sm: "10px", md: "12px" }}
+                    p={{ base: "3px 0px 3px 5px", md: "4px 0px 4px 10px" }}
+                  >
+                    Clothing
+                  </MenuItem>
+                </Link>
                 <MenuItem
                   fontStyle="Arial,Helvetica,sans-serif"
                   fontSize={{ base: "9px", sm: "10px", md: "12px" }}

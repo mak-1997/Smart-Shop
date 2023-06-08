@@ -46,7 +46,7 @@ export default function AddressForm() {
   }, [pincodeData.areaName]);
 
   if (pincodeData.city && city === "") {
-    console.log("dsjksjdjnsjnds");
+  
     setCity(pincodeData.district);
     setState(pincodeData.stateName);
     setCountry("India");

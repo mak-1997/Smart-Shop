@@ -21,21 +21,19 @@ export const updateRemoveProductAPI = async (data) => {
 }
 
 export const getFilteredData = async (category, maxPrice, order,page) => {
-    let url = `https://smart-shop-render.onrender.com/products?_page=${page}&_limit=20&`;
-    if (category) {
-      url += `category=${category}&`;
-    }
-    if (maxPrice ) {
-      url += `price_lte=${maxPrice}&`;
-    }
-    if (order) {
-      url += `_sort=price&_order=${order}&`;
-    }
-    url = url.slice(0, -1); // remove trailing "&"
+  let url = `https://smart-shop-render.onrender.com/products?_page=${page}&_limit=20&`;
+  if (category) {
+    url += `category=${category}&`;
+  }
+  if (maxPrice) {
+    url += `price_lte=${maxPrice}&`;
+  }
+  if (order) {
+    url += `_sort=price&_order=${order}&`;
+  }
+  url = url.slice(0, -1); // remove trailing "&"
 
-    console.log(url)
-  
-    let res = await axios.get(url);
-    return res.data;
-  };
+  let res = await axios.get(url);
+  return res.data;
+};
   

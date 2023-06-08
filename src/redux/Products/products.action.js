@@ -27,7 +27,7 @@ export const getData = (page) => async (dispatch) => {
 }
 
 export const getFilteredAndPaginatedData = (category, maxPrice, order, page) => async (dispatch) => {
-    console.log(page)
+
     try {
         let data = await getFilteredData(category, maxPrice, order, page)
         dispatch({ type: types.GET_FILTERED_AND_PAGINATED_DATA, payload: data })

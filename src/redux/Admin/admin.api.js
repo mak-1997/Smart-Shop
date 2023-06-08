@@ -6,7 +6,7 @@ export const getAdminProduct = async () => {
 };
 
 export const getAdminUser = async () => {
-  let res = await axios.get("https://smart-shop-render.onrender.com/users");
+  let res = await axios.get("https://joyous-pig-stockings.cyclic.app/users");
   return res.data;
 };
 
@@ -19,7 +19,7 @@ export const deleteProduct = async (id) => {
 
 export const deleteUser = async (id) => {
   let res = await axios.delete(
-    `https://smart-shop-render.onrender.com/users/${id}`
+    `https://joyous-pig-stockings.cyclic.app/users/${id}`
   );
   return res.data;
 };
