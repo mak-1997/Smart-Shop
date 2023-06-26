@@ -40,9 +40,8 @@ const Cart = () => {
           display={isLargerThan900 ? "flex" : ""}
           width={{ base: "100%", md: "90%", "2xl": "70%" }}
           margin={"auto"}
-          marginTop={"80px"}
           justifyContent="space-between"
-          marginBottom={"5"}
+          my={"140px"}
         >
           <Box width={{ base: "100%", lg: "60%" }}>
             <Text as="b" fontSize={"2xl"}>

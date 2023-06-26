@@ -35,21 +35,22 @@ const MensClothing = () => {
   return (
     <>
       <Navbar />
-      <Box>
+      <Box mb={"100px"}>
         <Box
           width="100%"
-          position="fixed"
-          top="55px"
+          // position="fixed"
+          // top="55px"
+          mt={"58px"}
           display={"flex"}
           justifyContent="space-between"
           bg="#F7FAFC"
           paddingLeft={"5"}
           paddingRight="5"
           height={"auto"}
-          // zIndex={"1000"}
+          // zIndex={"-300"}
         >
           <SidebarLarge page={page} />
-          <Box display={"flex"} width="fit-content" >
+          <Box display={"flex"} width="fit-content">
             <Button
               isDisabled={page === 1}
               size={"sm"}

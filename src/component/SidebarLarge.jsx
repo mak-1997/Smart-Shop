@@ -68,7 +68,7 @@ const SidebarLarge = () => {
         // p="6"
         overflowY="auto"
         borderRightWidth="1px"
-        zIndex={"1000"}
+        // zIndex={"1000"}
       >
         <Select
           size="sm"
