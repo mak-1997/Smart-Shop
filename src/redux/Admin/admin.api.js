@@ -6,7 +6,9 @@ export const getAdminProduct = async () => {
 };
 
 export const getAdminUser = async () => {
-  let res = await axios.get("https://joyous-pig-stockings.cyclic.app/users");
+  let res = await axios.get(
+    "https://nice-teal-swordfish-gear.cyclic.app/users"
+  );
   return res.data;
 };
 
@@ -19,7 +21,7 @@ export const deleteProduct = async (id) => {
 
 export const deleteUser = async (id) => {
   let res = await axios.delete(
-    `https://joyous-pig-stockings.cyclic.app/users/${id}`
+    `https://nice-teal-swordfish-gear.cyclic.app/users/${id}`
   );
   return res.data;
 };

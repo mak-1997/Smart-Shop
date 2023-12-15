@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const Register = async (users) => {
   let res = await axios.post(
-    `https://joyous-pig-stockings.cyclic.app/users/register`,
+    `https://nice-teal-swordfish-gear.cyclic.app/users/register`,
     users
   );
 
@@ -14,7 +14,9 @@ export const Register = async (users) => {
 };
 
 export const getUsers = async () => {
-  let res = await axios.get("https://joyous-pig-stockings.cyclic.app/users");
+  let res = await axios.get(
+    "https://nice-teal-swordfish-gear.cyclic.app/users"
+  );
 
   return res.data;
 };
